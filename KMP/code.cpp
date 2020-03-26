@@ -22,7 +22,9 @@ int searchPattern(const vector<int> &lps,string txt,string pat,int m,int n){
             i++;
             j++;
         }else{
-            j = lps[j];
+            if (j != -1){
+                j = lps[j];                                
+            }
             if (j == -1 && pat[j+1] != txt[i]){
                 i++;
             }
