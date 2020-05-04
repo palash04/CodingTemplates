@@ -12,43 +12,43 @@ void createLPS(vector<int> &lps,string pat,int n){
     }
 }
 
-int searchPattern(const vector<int> &lps,string txt,string pat,int m,int n){
+int searchPattern(const vector<int> &lps,string txt,string pat, int m,int n){
     int i = 0;
     int j = -1;
     
-    while (j!=n-1 && i<m){
-        
+    while (i < m){
         if (pat[j+1] == txt[i]){
             i++;
             j++;
         }else{
             if (j != -1){
-                j = lps[j];                                
+                j = lps[j];
             }
-            if (j == -1 && pat[j+1] != txt[i]){
+            else {
                 i++;
             }
         }
-    }
-    if (j == n-1){
-        return i-n;   // returns first occurrence of the pattern in the given txt
+        
+        // finding all the occurrences of the given pattern. 
+        if (j == n-1){
+            cout << i-n << "\n";
+            j = lps[j];
+        }
     }
     return -1;
+    
 }
 
 int main(){
     
-    string txt = "ABABDABACDABABCABAB";
-    string pat = "ABABC";
-    int npat = (int)pat.size();
-    int ntxt = (int)txt.size();
-    vector<int> lps(npat);
-    createLPS(lps,pat,npat);
+    string txt = "AABAACAADAABAABA";
+    string pat = "AABA";
     
-    int patIndex = searchPattern(lps,txt,pat,ntxt,npat);
-    if (patIndex == -1){
-        cout << "Pattern not found\n";
-    }else{
-        cout << "Pattern found at index: " << patIndex << "\n";
-    }
+    int m = (int)txt.size();
+    int n = (int)pat.size();
+    
+    vector<int> lps(n);
+    createLPS(lps,pat,n);
+    searchPattern(lps, txt, pat, m, n);
+    
 }
