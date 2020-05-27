@@ -7,7 +7,10 @@ void createLPS(vector<int> &lps,string pat,int n){
         if (pat[lps[i-1]+1] == pat[i]){
             lps[i] = lps[i-1]+1;
         }else{
-            lps[i] = -1;
+            if (pat[i-1] == pat[i]){
+                lps[i-1] = lps[i];
+            }
+            else lps[i] = -1;
         }
     }
 }
@@ -29,7 +32,7 @@ int searchPattern(const vector<int> &lps,string txt,string pat, int m,int n){
             }
         }
         
-        // finding all the occurrences of the given pattern. 
+        // finding all the occurrences of the given pattern.
         if (j == n-1){
             cout << i-n << "\n";
             j = lps[j];
@@ -39,16 +42,24 @@ int searchPattern(const vector<int> &lps,string txt,string pat, int m,int n){
     
 }
 
+void printLPS(vector<int> &lps){
+    for (auto l : lps){
+        cout << l << " ";
+    }
+    cout << "\n";
+}
+
 int main(){
     
-    string txt = "AABAACAADAABAABA";
-    string pat = "AABA";
+    string txt = "AABAABAA";
+    string pat = "ABAA";
     
     int m = (int)txt.size();
     int n = (int)pat.size();
     
     vector<int> lps(n);
     createLPS(lps,pat,n);
+    printLPS(lps);
     searchPattern(lps, txt, pat, m, n);
     
 }
