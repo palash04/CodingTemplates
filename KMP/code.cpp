@@ -8,7 +8,7 @@ void createLPS(vector<int> &lps,string pat,int n){
             lps[i] = lps[i-1]+1;
         }else{
             if (pat[i-1] == pat[i]){
-                lps[i-1] = lps[i];
+                lps[i] = lps[i-1];
             }
             else lps[i] = -1;
         }
