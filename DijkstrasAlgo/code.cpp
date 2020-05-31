@@ -6,9 +6,19 @@ using namespace std;
 int V;
 vector<vector<ipair>> adj;
 
+/*
+addEdge(0,1,10);
+addEdge(0,2,20);
+addEdge(1,2,15);
+addEdge(2,3,5);
+
+[0] -> {1,10},{2,20}
+[1] -> {2,15}
+[2] -> {3,5}
+/*
 void addEdge(int u,int v,int wt){
     adj[u].push_back(make_pair(v, wt));
-    adj[v].push_back(make_pair(u, wt));
+    adj[v].push_back(make_pair(u, wt)); // comment this line for directed graph
 }
 
 void shortestPath(int src){
