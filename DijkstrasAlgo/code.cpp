@@ -21,6 +21,8 @@ void addEdge(int u,int v,int wt){
     adj[v].push_back(make_pair(u, wt)); // comment this line for directed graph
 }
 
+
+// Time Comp: Adjacency List + priority_queue => O((E+V)logV) ~ O(ElogV) since E is much much greater than V
 void shortestPath(int src){
     priority_queue<ipair, vector<ipair>, greater<>> pq;
     vector<int> dist(V,INF);
