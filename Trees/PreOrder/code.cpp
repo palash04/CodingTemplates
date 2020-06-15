@@ -7,6 +7,7 @@ struct TreeNode{
     TreeNode(int x): val(x),left(NULL),right(NULL) {}
 };
 
+// O(n) and O(n)
 void preorder(TreeNode *root){
     if (root){
         cout << root->val << " ";
@@ -15,6 +16,7 @@ void preorder(TreeNode *root){
     }
 }
 
+// O(n) and O(n)
 void preorderIterative(TreeNode *root){
     stack<TreeNode*> st;
     while (true){
