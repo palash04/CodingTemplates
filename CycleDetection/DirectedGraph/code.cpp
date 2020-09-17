@@ -13,6 +13,32 @@ public:
         adj[u].push_back(v);
     }
     
+    // Recursive
+    bool dfs(int u, vector<bool> &visited, vector<bool> &recVisited) {
+        
+        if (!visited[u]) {
+            visited[u] = true;
+            recVisited[u] = true;
+        }
+        
+        for (auto v : adj[u]) {
+            if (recVisited[v]) {
+                
+                return true;
+            }
+            
+            if (!visited[v]) {
+                if (dfs(v, visited, recVisited)) {
+                    return true;
+                }
+            }
+        }
+        
+        recVisited[u] = false;
+        return false;
+    }
+    
+    // Iterative
     bool isCycleUtil(int u,vector<bool> &visited,vector<bool> &recVisited){
         stack<int> st;
         st.push(u);
