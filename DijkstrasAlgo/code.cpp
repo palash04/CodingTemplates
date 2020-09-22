@@ -69,7 +69,7 @@ int main(){
     addEdge(6, 8, 6);
     addEdge(7, 8, 7);
     
-    int sourceVertex = 0
+    int sourceVertex = 0;
     shortestPath(sourceVertex);
     
     return 0;
