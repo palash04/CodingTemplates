@@ -1,45 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void createLPS(vector<int> &lps,string pat,int n){
-    if (n>=1) lps[0] = -1;
-    for (int i=1;i<n;i++){
-        if (pat[lps[i-1]+1] == pat[i]){
-            lps[i] = lps[i-1]+1;
-        }else{
-            if (pat[i-1] == pat[i]){
-                lps[i] = lps[i-1];
-            }
-            else lps[i] = -1;
-        }
-    }
-}
-
-int searchPattern(const vector<int> &lps,string txt,string pat, int m,int n){
-    int i = 0;
-    int j = -1;
-    
-    while (i < m){
-        if (pat[j+1] == txt[i]){
+void createLPS(vector<int> &lps, string pat, int n) {
+    lps[0] = 0;
+    int len = 0;
+    int i = 1;
+    while (i < n) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
             i++;
-            j++;
-        }else{
-            if (j != -1){
-                j = lps[j];
-            }
-            else {
+        }else {
+            if (len) {
+                len = lps[len-1];
+            }else {
                 i++;
             }
         }
-        
-        // finding all the occurrences of the given pattern.
-        if (j == n-1){
-            cout << i-n << "\n";
-            j = lps[j];
+    }
+}
+    
+int searchPattern(vector<int> &lps, string t, string p, int m, int n) {
+    int i = 0;
+    int j = 0;
+
+    while (i < m) {
+        if (t[i] == p[j]) {
+            i++;
+            j++;
+        }else {
+            if (j) {
+                j = lps[j-1];
+            }else {
+                i++;
+            }
+        }
+
+        if (j == n) {
+            return i - j;
         }
     }
     return -1;
-    
 }
 
 void printLPS(vector<int> &lps){
