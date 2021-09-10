@@ -14,12 +14,13 @@ void createLPS(vector<int> &lps, string pat, int n) {
             if (len) {
                 len = lps[len-1];
             }else {
+                lps[i] = 0;
                 i++;
             }
         }
     }
 }
-    
+
 int searchPattern(vector<int> &lps, string t, string p, int m, int n) {
     int i = 0;
     int j = 0;
@@ -37,7 +38,8 @@ int searchPattern(vector<int> &lps, string t, string p, int m, int n) {
         }
 
         if (j == n) {
-            return i - j;
+            cout << i-j << "\n";
+            j = lps[j-1];
         }
     }
     return -1;
@@ -51,16 +53,16 @@ void printLPS(vector<int> &lps){
 }
 
 int main(){
-    
+
     string txt = "AABAABAA";
     string pat = "ABAA";
-    
+
     int m = (int)txt.size();
     int n = (int)pat.size();
-    
+
     vector<int> lps(n);
     createLPS(lps,pat,n);
-    printLPS(lps);
+
     searchPattern(lps, txt, pat, m, n);
-    
+
 }
