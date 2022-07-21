@@ -39,7 +39,7 @@ public:
                     // count all occurrences
                     j = lps[j-1];
                 }
-            } else if (i < m and txt[i] != p[j]) {
+            } else {
                 if (j > 0) {
                     j = lps[j-1];
                 } else {
